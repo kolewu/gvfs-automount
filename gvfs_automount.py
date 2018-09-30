@@ -10,9 +10,11 @@ insertion/connection.
 
 import argparse
 import sys
+import gi
 
 from gi.repository import Gio
-from gi.repository import GObject
+from gi.repository import GLib
+gi.require_version('Notify', '0.7')
 from gi.repository import Notify
 
 from pprint import pprint
@@ -67,7 +69,7 @@ def main(args):
     vm = Gio.VolumeMonitor.get()
     connections = []
     connections.append(vm.connect("volume-added", on_volume_added, None))
-    GObject.MainLoop().run()
+    GLib.MainLoop().run()
 
 if __name__ == '__main__':
     error = None
